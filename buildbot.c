@@ -8,7 +8,7 @@ int main(void) {
         olduid=getuid();
         setuid(0);
 	char inpass[128];
-	char gccomand[512];
+	char gccomand[512] = "";
 
         if(getuid()){
                 printf("must be suid root.\n");
