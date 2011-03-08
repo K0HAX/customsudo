@@ -32,7 +32,7 @@ int main(void) {
         return 0;
 }
 
-int mysum(char **password)
+int mysum(char *password)
 {
 	int i;
 	int n;
