@@ -35,25 +35,22 @@ int main(void) {
 int mysum(char **password)
 {
 	int i;
+	int n;
 	unsigned char result[MD5_DIGEST_LENGTH];
-	FILE *fp;
 	char md5out[33];
 
 	MD5(password, strlen(password), result);
-	if ((fp = fopen("pass.key", "w")) == NULL)
-		return;
 
+	n = 0;
 	for(i=0;i<MD5_DIGEST_LENGTH;i++)
 	{
-		fprintf(fp,"%02x",result[i]);
+		//fprintf(fp,"%02x",result[i]);
+		sprintf(&md5out[n], "%02x", result[i]);
+		n = n + 2;
 		printf("%02x",result[i]);
 	}
+	strcpy(password, md5out);
 	printf("\n");
 
-	fclose(fp);
-	fp = fopen("pass.key", "r");
-	fscanf(fp, "%s", password);
-	fclose(fp);
-	unlink("pass.key");
 	return;
 }

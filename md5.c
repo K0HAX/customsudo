@@ -6,32 +6,22 @@
 int main()
 {
   int i;
+  int n;
   char test[128];
   unsigned char result[MD5_DIGEST_LENGTH];
-  FILE *fp;
-  char md5out[33];
-  char md5test2[33];
+  char sStringOut[512];
 
   scanf("%s",test);
 
-  // really stupid hack to get MD5 back into something useful...
   MD5(test, strlen(test), result);
-  if ((fp = fopen("pass.key", "w")) == NULL)
-	return;
 
-  // output
+  n = 0;
   for(i = 0; i < MD5_DIGEST_LENGTH; i++)
   {
-    //printf("%02x", result[i]);
-    fprintf(fp,"%02x", result[i]);
+    sprintf(&sStringOut[n], "%02x", result[i]);
+    n = n + 2;
   }
-  //printf("\n");
-
-  fclose(fp);
-  fp = fopen("pass.key", "r");
-  fscanf(fp, "%s", md5out);
-  printf("%s\n", md5out);
-  fclose(fp);
+  printf("%s\n", sStringOut);
 
   return EXIT_SUCCESS;
 }
